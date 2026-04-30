@@ -36,4 +36,18 @@ class VisitorController extends Controller
     {
         return view('visitors.show', compact('visitor'));
     }
+
+    public function edit(\App\Models\Visitor $visitor)
+    {
+        return view('visitors.edit', compact('visitor'));
+    }
+
+    public function update(\App\Models\Visitor $visitor, Request $request)
+    {
+        $visitor->name = $request->name;
+        $visitor->phone = $request->phone;
+        $visitor->email = $request->email;
+        $visitor->save();
+        return redirect()->route('visitors.index')->with('success', 'Visitor updated successfully');
+    }
 }
