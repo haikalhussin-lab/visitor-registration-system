@@ -18,6 +18,7 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>create at</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -27,6 +28,7 @@
                                     <td>{{ $visitor->name }}</td>
                                     <td>{{ $visitor->phone }}</td>
                                     <td>{{ $visitor->email }}</td>
+                                    <td>{{ $visitor->created_at->diffForHumans() }}</td>
                                     <td>
                                         <a href="" class="btn btn-info">Show</a>
                                         <a href="" class="btn btn-primary">Edit</a>
