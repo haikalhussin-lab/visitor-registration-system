@@ -30,8 +30,8 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <a href="{{ route('visitors.index') }}" class="btn btn-warning">{{ __('Back') }}</a>
-                                <a href="" class="btn btn-primary">{{ __('Edit') }}</a>
-                                <a href="" class="btn btn-danger">{{ __('Delete') }}</a>
+                                <a href="{{ route('visitors.edit', $visitor->id) }}" class="btn btn-primary">{{ __('Edit') }}</a>
+                                <a onclick="return confirm('Are you sure want to delete this visitor?')" href="{{ route('visitors.delete', $visitor->id) }}" class="btn btn-danger">{{ __('Delete') }}</a>
                             </div>
                         </div>
                 </div>

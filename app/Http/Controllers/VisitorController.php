@@ -50,4 +50,10 @@ class VisitorController extends Controller
         $visitor->save();
         return redirect()->route('visitors.index')->with('success', 'Visitor updated successfully');
     }
+
+    public function delete(\App\Models\Visitor $visitor)
+    {
+        $visitor->delete();
+        return redirect()->route('visitors.index')->with('success', 'Visitor deleted successfully');
+    }
 }

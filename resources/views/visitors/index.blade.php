@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
                     {{ session('success') }}
@@ -32,7 +32,7 @@
                                     <td>
                                         <a href="{{ route('visitors.show', $visitor->id) }}" class="btn btn-primary">Show</a>
                                         <a href="{{ route('visitors.edit', $visitor->id) }}" class="btn btn-warning">Edit</a>
-                                        
+                                        <a onclick="return confirm('Are you sure want to delete this visitor?')" href="{{ route('visitors.delete', $visitor->id) }}" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
