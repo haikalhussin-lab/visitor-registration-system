@@ -32,9 +32,8 @@ class VisitorController extends Controller
         return redirect()->route('visitors.index')->with('success', 'Visitor created successfully');
     }
 
-    public function show($id)
+    public function show(\App\Models\Visitor $visitor)
     {
-        $visitor = \App\Models\Visitor::find($id);
         return view('visitors.show', compact('visitor'));
     }
 }
