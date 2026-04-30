@@ -15,3 +15,5 @@ Route::get('/visitors', [App\Http\Controllers\VisitorController::class, 'index']
 Route::get('/visitors/create', [App\Http\Controllers\VisitorController::class, 'create'])->name('visitors.create');
 
 Route::post('/visitors/create', [App\Http\Controllers\VisitorController::class, 'store'])->name('visitors.store');
+
+Route::get('/visitors/{id}', [App\Http\Controllers\VisitorController::class, 'show'])->name('visitors.show');
