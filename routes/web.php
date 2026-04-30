@@ -37,3 +37,17 @@ Route::get('/blogs/{blog}/edit', [App\Http\Controllers\BlogController::class, 'e
 Route::post('/blogs/{blog}/edit', [App\Http\Controllers\BlogController::class, 'update'])->name('blogs.update');
 
 Route::get('/blogs/{blog}/delete', [App\Http\Controllers\BlogController::class, 'delete'])->name('blogs.delete');
+
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+
+Route::get('/users/create', [App\Http\Controllers\UserController::class, 'create'])->name('users.create');
+
+Route::post('/users/create', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
+
+Route::get('/users/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show');
+
+Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+
+Route::post('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+
+Route::get('/users/{user}/delete', [App\Http\Controllers\UserController::class, 'delete'])->name('users.delete');

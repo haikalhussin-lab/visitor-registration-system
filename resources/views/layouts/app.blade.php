@@ -37,6 +37,12 @@
                             <a class="nav-link" href="{{ route('visitors.create') }}">Create Visitor</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.create') }}">Create User</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('blogs.index') }}">Blogs</a>
                         </li>
                         <li class="nav-item">
