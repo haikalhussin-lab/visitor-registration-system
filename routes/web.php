@@ -53,6 +53,7 @@ Route::post('/users/{user}/edit', [App\Http\Controllers\UserController::class, '
 Route::get('/users/{user}/delete', [App\Http\Controllers\UserController::class, 'delete'])->name('users.delete');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/authentication-logs', [App\Http\Controllers\AuthenticationLogController::class, 'index'])->name('authentication-logs.index');
     Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/read-all', [App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('notifications.read-all');
     Route::delete('/notifications', [App\Http\Controllers\NotificationController::class, 'destroyAll'])->name('notifications.destroy-all');
