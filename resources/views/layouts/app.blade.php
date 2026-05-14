@@ -66,6 +66,40 @@
                                 </li>
                             @endif
                         @else
+                            @php
+                                $navUnread = Auth::user()->unreadNotifications()->latest()->limit(10)->get();
+                                $navUnreadCount = Auth::user()->unreadNotifications()->count();
+                            @endphp
+                            <li class="nav-item dropdown">
+                                <a id="notificationDropdown" class="nav-link py-2" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="{{ __('Notifications') }}">
+                                    <span class="position-relative d-inline-flex align-items-center justify-content-center" style="width: 1.5rem; height: 1.5rem;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                                        </svg>
+                                        @if ($navUnreadCount > 0)
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem; min-width: 1.1rem;">
+                                                {{ $navUnreadCount > 99 ? '99+' : $navUnreadCount }}
+                                            </span>
+                                        @endif
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end p-0 shadow" aria-labelledby="notificationDropdown" style="min-width: 320px; max-width: 100vw;">
+                                    <div class="px-3 py-2 border-bottom small fw-semibold text-muted">{{ __('Unread notifications') }}</div>
+                                    <div class="list-group list-group-flush" style="max-height: 320px; overflow-y: auto;">
+                                        @forelse ($navUnread as $n)
+                                            <a class="list-group-item list-group-item-action list-group-item-light py-2 px-3 small" href="{{ route('notifications.show', $n->id) }}">
+                                                <div class="fw-semibold text-truncate">{{ $n->data['message'] ?? __('Notification') }}</div>
+                                                <div class="text-muted" style="font-size: 0.75rem;">{{ $n->created_at->diffForHumans() }}</div>
+                                            </a>
+                                        @empty
+                                            <div class="list-group-item border-0 py-3 px-3 text-muted small">{{ __('No unread notifications.') }}</div>
+                                        @endforelse
+                                    </div>
+                                    <div class="border-top p-2 d-grid">
+                                        <a class="btn btn-sm btn-primary" href="{{ route('notifications.index') }}">{{ __('View all notifications') }}</a>
+                                    </div>
+                                </div>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

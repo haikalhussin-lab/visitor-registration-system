@@ -28,6 +28,8 @@ class VisitorController extends Controller
         $visitor->email = $request->email;
         $visitor->save();
 
+        auth()->user()->notify(new \App\Notifications\VisitorCreatedNotification());
+
         // redirect to index page
         return redirect()->route('visitors.index')->with('success', 'Visitor created successfully');
     }
