@@ -106,6 +106,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    Last login: {{ Auth::user()->lastLoginAt()->format('d/m/Y H:i:s') }}
                                     <a class="dropdown-item" href="{{ route('authentication-logs.index') }}">{{ __('Authentication Logs') }}</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
