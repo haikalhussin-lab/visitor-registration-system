@@ -47,11 +47,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            @if (session('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif
             <div class="card">
                 <div class="card-header">{{ __('List of Deleted Visitors') }}</div>
                 <div class="card-body">
@@ -73,7 +68,8 @@
                                     <td>{{ $deletedVisitor->email }}</td>
                                     <td>{{ $deletedVisitor->deleted_at->diffForHumans() }}</td>
                                     <td>
-                                       <a href="" class="btn btn-success">Restore</a>
+                                       <a href="{{ route('visitors.restore', $deletedVisitor->id) }}" class="btn btn-success">Restore</a>
+                                       <a href="{{ route('visitors.forcedelete', $deletedVisitor->id) }}" onclick="return confirm('Are you sure want to force delete this visitor?')" class="btn btn-danger">Force Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

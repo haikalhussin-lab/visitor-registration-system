@@ -60,4 +60,16 @@ class VisitorController extends Controller
         auth()->user()->notify(new \App\Notifications\VisitorDeletedNotification());
         return redirect()->route('visitors.index')->with('success', 'Visitor deleted successfully');
     }
+
+    public function restore($visitor){
+        $visitor = \App\Models\Visitor::onlyTrashed()->find($visitor);
+        $visitor->restore();
+        return redirect()->route('visitors.index')->with('success', 'Visitor restored successfully');
+    }
+
+    public function forcedelete($visitor){
+        $visitor = \App\Models\Visitor::onlyTrashed()->find($visitor);
+        $visitor->forceDelete();
+        return redirect()->route('visitors.index')->with('success', 'Visitor forced deleted successfully');
+    }
 }
