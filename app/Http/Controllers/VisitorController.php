@@ -10,8 +10,9 @@ class VisitorController extends Controller
     {
         // query from visitors table using model Visitor
         $visitors = \App\Models\Visitor::all();
+        $deletedVisitors = \App\Models\Visitor::onlyTrashed()->get();
         // return  to view
-        return view('visitors.index', compact('visitors'));
+        return view('visitors.index', compact('visitors', 'deletedVisitors'));
     }
     public function create()
     {
