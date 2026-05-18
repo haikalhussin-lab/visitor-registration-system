@@ -73,7 +73,7 @@
                                     <td>{{ $deletedVisitor->email }}</td>
                                     <td>{{ $deletedVisitor->deleted_at->diffForHumans() }}</td>
                                     <td>
-                                       
+                                       <a href="" class="btn btn-success">Restore</a>
                                     </td>
                                 </tr>
                             @endforeach
