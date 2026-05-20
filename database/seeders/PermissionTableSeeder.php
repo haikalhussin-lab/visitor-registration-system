@@ -53,5 +53,37 @@ class PermissionTableSeeder extends Seeder
         );
 
         $user->assignRole($role);
+
+
+
+
+
+        // create a user with role subadmin that has permission to index visitors, create visitors
+        $subadmin = User::firstOrCreate(
+            ['email' => 'subadmin@moh.gov.my'],
+            [
+                'name' => 'Subadmin',
+                'password' => Hash::make('password'),
+            ]
+        );
+        $role = Role::firstOrCreate(
+            ['name' => 'subadmin', 'guard_name' => 'web']
+        );
+        $role->syncPermissions(['index visitors', 'create visitors']);
+        $subadmin->assignRole($role);
+
+        $pegawai = User::firstOrCreate(
+            ['email' => 'pegawai@moh.gov.my'],
+            [
+                'name' => 'Pegawai',
+                'password' => Hash::make('password'),
+            ]
+        );
+        $role = Role::firstOrCreate(
+            ['name' => 'pegawai', 'guard_name' => 'web']
+        );
+        $pegawai->assignRole($role);
+        $pegawai->givePermissionTo('index visitors');
+        $pegawai->givePermissionTo('delete visitors');
     }
 }
