@@ -40,18 +40,26 @@
                             <a class="nav-link" href="{{ route('visitors.create') }}">Create Visitor</a>
                         </li>
                         @endcan
+                        @can('index users')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                         </li>
+                        @endcan
+                        @can('create users')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.create') }}">Create User</a>
                         </li>
+                        @endcan
+                        @can('index blogs')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('blogs.index') }}">Blogs</a>
                         </li>
+                        @endcan
+                        @can('create blogs')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('blogs.create') }}">Create Blog</a>
                         </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

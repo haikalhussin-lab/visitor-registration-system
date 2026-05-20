@@ -31,8 +31,12 @@
                                     <td>{{ $blog->created_at->diffForHumans() }}</td>
                                     <td>
                                         <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-primary">Show</a>
+                                        @can('edit blogs')
                                         <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning">Edit</a>
+                                        @endcan
+                                        @can('delete blogs')
                                         <a onclick="return confirm('Are you sure want to delete this blog?')" href="{{ route('blogs.delete', $blog->id) }}" class="btn btn-danger">Delete</a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

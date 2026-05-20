@@ -29,8 +29,12 @@
                                     <td>{{ optional($user->created_at)->diffForHumans() }}</td>
                                     <td>
                                         <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary">Show</a>
+                                        @can('edit users')
                                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                                        @endcan
+                                        @can('delete users')
                                         <a onclick="return confirm('Are you sure want to delete this user?')" href="{{ route('users.delete', $user->id) }}" class="btn btn-danger">Delete</a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

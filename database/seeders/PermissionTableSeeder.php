@@ -24,6 +24,16 @@ class PermissionTableSeeder extends Seeder
             'create visitors',
             'edit visitors',
             'delete visitors',
+
+            'index users',
+            'create users',
+            'edit users',
+            'delete users',
+
+            'index blogs',
+            'create blogs',
+            'edit blogs',
+            'delete blogs',
         ];
 
         $permissions = collect($permissionNames)->map(
