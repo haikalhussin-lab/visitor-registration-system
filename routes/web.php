@@ -28,6 +28,11 @@ Route::get('/visitors/{visitor}/restore', [App\Http\Controllers\VisitorControlle
 
 Route::get('/visitors/{visitor}/forcedelete', [App\Http\Controllers\VisitorController::class, 'forcedelete'])->name('visitors.forcedelete');
 
+Route::get('/visitors/{visitor}/download', [App\Http\Controllers\VisitorController::class, 'download'])->name('visitors.download');
+
+
+
+
 Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('blogs.index');
 
 Route::get('/blogs/create', [App\Http\Controllers\BlogController::class, 'create'])->name('blogs.create');
