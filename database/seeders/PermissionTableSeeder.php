@@ -15,13 +15,19 @@ class PermissionTableSeeder extends Seeder
     public function run(): void
     {
         $role = Role::create(['name' => 'admin']);
-        $permission = Permission::create([
-            'name' => 'index visitors',
-            'name' => 'create visitors',
-            'name' => 'edit visitors',
-            'name' => 'delete visitors',
-        ]);
-        $role->givePermissionTo($permission);
+
+        $permissionNames = [
+            'index visitors',
+            'create visitors',
+            'edit visitors',
+            'delete visitors',
+        ];
+
+        foreach ($permissionNames as $name) {
+            Permission::create(['name' => $name]);
+        }
+
+        $role->givePermissionTo($permissionNames);  
 
         $user = User::factory()->create(
             [
@@ -29,6 +35,6 @@ class PermissionTableSeeder extends Seeder
                 'email' => 'admin@moh.gov.my',
             ]
         );
-        $user->assignRole($role);
+        $user->assignRole('admin');
     }
 }
