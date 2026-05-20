@@ -14,6 +14,7 @@ class VisitorController extends Controller
         $this->middleware('permission:edit visitors', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete visitors', ['only' => ['delete']]);
     }
+    
     public function index()
     {
         // query from visitors table using model Visitor
