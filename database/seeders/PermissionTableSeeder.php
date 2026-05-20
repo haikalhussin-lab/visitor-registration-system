@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionTableSeeder extends Seeder
 {
@@ -14,7 +15,9 @@ class PermissionTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = Role::create(['name' => 'admin']);
+        $role = Role::firstOrCreate(
+            ['name' => 'admin', 'guard_name' => 'web']
+        );
 
         $permissionNames = [
             'index visitors',
@@ -23,18 +26,22 @@ class PermissionTableSeeder extends Seeder
             'delete visitors',
         ];
 
-        foreach ($permissionNames as $name) {
-            Permission::create(['name' => $name]);
-        }
+        $permissions = collect($permissionNames)->map(
+            fn (string $name) => Permission::firstOrCreate(
+                ['name' => $name, 'guard_name' => 'web']
+            )
+        );
 
-        $role->givePermissionTo($permissionNames);  
+        $role->syncPermissions($permissions);
 
-        $user = User::factory()->create(
+        $user = User::firstOrCreate(
+            ['email' => 'admin@moh.gov.my'],
             [
                 'name' => 'Admin',
-                'email' => 'admin@moh.gov.my',
+                'password' => Hash::make('password'),
             ]
         );
-        $user->assignRole('admin');
+
+        $user->assignRole($role);
     }
 }
