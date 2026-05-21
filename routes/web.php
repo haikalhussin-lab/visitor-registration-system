@@ -30,6 +30,7 @@ Route::get('/visitors/{visitor}/forcedelete', [App\Http\Controllers\VisitorContr
 
 Route::get('/visitors/{visitor}/download', [App\Http\Controllers\VisitorController::class, 'download'])->name('visitors.download');
 
+Route::get('/export-visitors-excel', [App\Http\Controllers\VisitorController::class, 'export'])->name('visitors.export');
 
 
 
@@ -46,6 +47,9 @@ Route::get('/blogs/{blog}/edit', [App\Http\Controllers\BlogController::class, 'e
 Route::post('/blogs/{blog}/edit', [App\Http\Controllers\BlogController::class, 'update'])->name('blogs.update');
 
 Route::get('/blogs/{blog}/delete', [App\Http\Controllers\BlogController::class, 'delete'])->name('blogs.delete');
+
+Route::get('/export-blogs-excel', [App\Http\Controllers\BlogController::class, 'export'])->name('blogs.export');
+
 
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 

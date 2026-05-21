@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
+use App\Exports\BlogExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class BlogController extends Controller
 {
     public function __construct()
@@ -62,6 +65,10 @@ class BlogController extends Controller
     {
         $blog->delete();
         return redirect()->route('blogs.index')->with('success', 'Blog deleted successfully');
+    }
+
+    public function export(){
+        return Excel::download(new BlogExport, 'blogs.xlsx');
     }
 }
 

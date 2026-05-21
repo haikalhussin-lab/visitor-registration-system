@@ -32,6 +32,7 @@
                                 <a href="{{ route('visitors.index') }}" class="btn btn-warning">{{ __('Back') }}</a>
                                 <a href="{{ route('visitors.edit', $visitor->id) }}" class="btn btn-primary">{{ __('Edit') }}</a>
                                 <a onclick="return confirm('Are you sure want to delete this visitor?')" href="{{ route('visitors.delete', $visitor->id) }}" class="btn btn-danger">{{ __('Delete') }}</a>
+                                <a href="{{ route('visitors.download', $visitor->id) }}" class="btn btn-success">{{ __('Download') }}</a>
                             </div>
                         </div>
                 </div>

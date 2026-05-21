@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+use App\Exports\VisitorExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VisitorController extends Controller
 {
@@ -80,5 +84,17 @@ class VisitorController extends Controller
         $visitor = \App\Models\Visitor::onlyTrashed()->find($visitor);
         $visitor->forceDelete();
         return redirect()->route('visitors.index')->with('success', 'Visitor forced deleted successfully');
+    }
+
+    public function download(\App\Models\Visitor $visitor){
+        $pdf = PDF::loadView('visitors.pdf', ['visitor' => $visitor]);
+        //$pdf->setEncryption("adminpassword", "adminpassword");
+
+        //$pdf->setPaper('a4', 'landscape');
+        return $pdf->download('visitor.pdf');
+    }
+
+    public function export(){
+        return Excel::download(new VisitorExport, 'visitors.xlsx');
     }
 }

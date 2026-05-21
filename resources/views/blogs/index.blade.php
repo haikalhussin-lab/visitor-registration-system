@@ -10,7 +10,7 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">{{ __('List of Blogs') }}</div>
+                <div class="card-header">{{ __('List of Blogs') }} <a href="{{ route('blogs.export') }}" class="btn btn-success">Export</a></div>
                 <div class="card-body">
                     <table class="table">
                         <thead>

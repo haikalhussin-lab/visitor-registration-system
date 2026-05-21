@@ -10,7 +10,7 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">{{ __('List of Visitors') }}</div>
+                <div class="card-header">{{ __('List of Visitors') }} <a href="{{ route('visitors.export') }}" class="btn btn-success">Export</a></div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
@@ -37,6 +37,7 @@
                                         @can('delete visitors')
                                         <a onclick="return confirm('Are you sure want to delete this visitor?')" href="{{ route('visitors.delete', $visitor->id) }}" class="btn btn-danger">Delete</a>
                                         @endcan
+                                        <a href="{{ route('visitors.download', $visitor->id) }}" class="btn btn-success">Download</a>
                                     </td>
                                 </tr>
                             @endforeach
