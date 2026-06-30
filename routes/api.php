@@ -8,6 +8,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/login', [\App\Http\Controllers\APILoginController::class, 'login']);
+Route::post('/register', [\App\Http\Controllers\APIRegisterController::class, 'register']);
 
 Route::get('/blogs', [\App\Http\Controllers\APIBlogController::class, 'index']) ->middleware('auth:sanctum');
 Route::get('/blogs/{blog}', [\App\Http\Controllers\APIBlogController::class, 'show']) ->middleware('auth:sanctum');
