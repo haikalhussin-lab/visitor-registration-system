@@ -31,4 +31,39 @@ class APIBlogController extends Controller
             'message' => 'Blog deleted successfully',
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'author' => 'required|string|max:255',
+        ]);
+        $blog = new Blog();
+        $blog->title = $request->title;
+        $blog->description = $request->description;
+        $blog->author = $request->author;
+        $blog->save();
+        return response()->json([
+            'message' => 'Blog created successfully',
+            'blog' => $blog
+        ]);
+    }
+
+    public function update(Blog $blog, Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'author' => 'required|string|max:255',
+        ]);
+        $blog->title = $request->title;
+        $blog->description = $request->description;
+        $blog->author = $request->author;
+        $blog->save();
+        return response()->json([
+            'message' => 'Blog updated successfully',
+            'blog' => $blog
+        ]);
+    }
 }
