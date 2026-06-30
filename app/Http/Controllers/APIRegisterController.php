@@ -14,6 +14,7 @@ class APIRegisterController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
+        $user = new User();
         $user = User::create($request->all());
         return response()->json([
             'message' => 'User registered successfully',
