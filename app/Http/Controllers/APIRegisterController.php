@@ -14,11 +14,16 @@ class APIRegisterController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
-        $user = new User();
-        $user = User::create($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        $token = $user->createToken('auth_token')->plainTextToken;
         return response()->json([
             'message' => 'User registered successfully',
-            'user' => $user
+            'user' => $user,
+            'token' => $token
         ]);
     }
 }
