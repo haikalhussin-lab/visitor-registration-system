@@ -24,6 +24,12 @@ class User extends Authenticatable implements HasMedia
     use HasFactory, Notifiable, AuthenticationLogable, HasApiTokens, InteractsWithMedia;
     use HasRoles;
 
+    protected $appends = ['image'];
+    public function getImageAttribute()
+    {
+        return $this->getFirstMediaUrl('images')??null;
+    }
+
     /**
      * Get the attributes that should be cast.
      *

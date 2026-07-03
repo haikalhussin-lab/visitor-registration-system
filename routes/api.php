@@ -19,5 +19,5 @@ Route::post('/blogs/{blog}/edit', [\App\Http\Controllers\APIBlogController::clas
 Route::get('/visitors', [\App\Http\Controllers\APIVisitorController::class, 'index']) ->middleware('auth:sanctum');
 Route::get('/visitors/{visitor}', [\App\Http\Controllers\APIVisitorController::class, 'show']) ->middleware('auth:sanctum');
 Route::get('/visitors/{visitor}/delete', [\App\Http\Controllers\APIVisitorController::class, 'delete']) ->middleware('auth:sanctum');
-Route::post('/visitors/create', [\App\Http\Controllers\APIVisitorController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/visitors/create', [\App\Http\Controllers\APIVisitorController::class, 'store']);
 Route::post('/visitors/{visitor}/edit', [\App\Http\Controllers\APIVisitorController::class, 'update'])->middleware('auth:sanctum');

@@ -36,15 +36,18 @@ class APIVisitorController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $visitor = new Visitor();
         $visitor->name = $request->name;
         $visitor->phone = $request->phone;
         $visitor->email = $request->email;
         $visitor->save();
+        $visitor->addMediaFromRequest('image')->toMediaCollection('images');
         return response()->json([
             'message' => 'Visitor created successfully',
-            'visitor' => $visitor
+            'visitor' => $visitor,
+            'image' => $visitor->image
         ]);
     }
     public function update(Visitor $visitor, Request $request)

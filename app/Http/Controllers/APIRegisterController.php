@@ -22,12 +22,13 @@ class APIRegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $user->addMediaFromRequest('image')->toMediaCollection('avatars');
+        $user->addMediaFromRequest('image')->toMediaCollection('images');
         $token = $user->createToken('auth_token')->plainTextToken;
         return response()->json([
             'message' => 'User registered successfully',
             'user' => $user,
-            'token' => $token
+            'token' => $token,
+            'image' => $user->image
         ]);
     }
 }
